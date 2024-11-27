@@ -3,16 +3,27 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import MainContent from './components/MainContent'
 import { Container, Row, Col } from 'react-bootstrap'
+import MyNavbar from './components/MyNavbar'
+import Reservation from './components/Reservation'
 
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'></header>
-      <main className='bg-dark'>
+      <header>
+        <MyNavbar isFluid={true} subtitle='Uba' />
+      </header>
+      <main className='bg-dark p-3'>
         <Container>
           <Row className='justify-content-center'>
             <Col xs={12} md={8} lg={6}>
               <MainContent />
+            </Col>
+          </Row>
+        </Container>
+        <Container>
+          <Row className='justify-content-center'>
+            <Col xs={12} md={8} lg={6}>
+              <Reservation />
             </Col>
           </Row>
         </Container>
