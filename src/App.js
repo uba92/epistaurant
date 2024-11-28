@@ -5,6 +5,7 @@ import MainContent from './components/MainContent'
 import { Container, Row, Col } from 'react-bootstrap'
 import MyNavbar from './components/MyNavbar'
 import Reservation from './components/Reservation'
+import Admin from './components/Admin'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Row className='justify-content-center'>
             <Col xs={12} md={8} lg={6}>
               <Reservation />
+              <Admin />
             </Col>
           </Row>
         </Container>

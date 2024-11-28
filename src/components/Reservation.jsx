@@ -22,9 +22,46 @@ class Reservation extends Component {
       specialRequest: '',
     },
   }
+
+  submitReservation = (e) => {
+    e.preventDefault()
+    // facciamo la chiamata POST
+    fetch('https://striveschool-api.herokuapp.com/api/reservation', {
+      method: 'POST',
+      body: JSON.stringify(this.state.reservation),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          // prenotazione salvata
+          alert('Prenotazione inviata!')
+          // svuotare i campi del form!
+          // per svuotare il form, devo solo resettare lo stato!
+          // ogni campo del form è collegato alla propria proprietà in "reservation"
+          this.setState({
+            reservation: {
+              name: '',
+              phone: '',
+              numberOfPeople: '1',
+              smoking: false,
+              dateTime: '',
+              specialRequests: '',
+            },
+          })
+        } else {
+          // errore nella prenotazione
+          throw new Error('Errore nel salvataggio della prenotazione')
+        }
+      })
+      .catch((err) => {
+        console.log('ERRORE!!', err)
+      })
+  }
   render() {
     return (
-      <Form className=' text-light my-3'>
+      <Form className=' text-light my-3' onSubmit={this.submitReservation}>
         <Form.Group className='mb-3'>
           <Form.Label htmlFor='name'>Nome</Form.Label>
           <Form.Control
